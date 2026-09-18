@@ -1,5 +1,5 @@
 -- ==============================================================================
--- ANSHELTECH - 6 DUMMY ARTICLES SEED SCRIPT
+-- ANSHELTECH - 6 DUMMY ARTICLES SEED SCRIPT (PostgreSQL Dollar-Quoted)
 -- Jalankan file SQL ini setelah menjalankan schema.sql di Supabase SQL Editor
 -- ==============================================================================
 
@@ -19,8 +19,8 @@ INSERT INTO public.articles (
 (
     'GTA VI Resmi Rilis Trailer Gameplay Perdana: Grafik Spektakuler dan Detail Vice City yang Hidup',
     'gta-vi-resmi-rilis-trailer-gameplay-perdana',
-    'Rockstar Games akhirnya memamerkan cuplikan gameplay perdana Grand Theft Auto VI yang memperlihatkan visual Next-Gen luar biasa di Leonida.',
-    '# Rockstar Games Gebrak Industri dengan Gameplay GTA VI
+    $ex$Rockstar Games akhirnya memamerkan cuplikan gameplay perdana Grand Theft Auto VI yang memperlihatkan visual Next-Gen luar biasa di Leonida.$ex$,
+    $md$# Rockstar Games Gebrak Industri dengan Gameplay GTA VI
 
 Rockstar Games akhirnya merilis trailer gameplay perdana untuk judul yang paling ditunggu di dekade ini: **Grand Theft Auto VI**. Dalam video berdurasi lebih dari 4 menit tersebut, para gamer diperlihatkan bagaimana negara bagian Leonida serta kota ikonik Vice City dihidupkan dengan teknologi grafis paling mutakhir.
 
@@ -35,7 +35,7 @@ Salah satu fokus utama dalam presentasi gameplay ini adalah kepadatan dunia game
 - **Fisika Kendaraan Lebih Realistis:** Peningkatan drastis pada suspensi mobil, traksi permukaan jalan basah, dan deformasi bodi kendaraan.
 - **Interaksi Sosial Media In-Game:** Fitur ponsel pintar terintegrasi dengan video vertikal ala TikTok yang mempengaruhi reaksi dunia sekitar.
 
-GTA VI dijadwalkan meluncur untuk konsol PlayStation 5 dan Xbox Series X/S tahun depan, dengan versi PC menyusul.',
+GTA VI dijadwalkan meluncur untuk konsol PlayStation 5 dan Xbox Series X/S tahun depan, dengan versi PC menyusul.$md$,
     'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80',
     'news',
     ARRAY['Action', 'Open World'],
@@ -47,8 +47,8 @@ GTA VI dijadwalkan meluncur untuk konsol PlayStation 5 dan Xbox Series X/S tahun
 (
     'PlayStation 5 Pro Resmi Meluncur: Spesifikasi PSSR AI Upscaling dan Peningkatan Performa GPU 67%',
     'playstation-5-pro-resmi-meluncur-spesifikasi-pssr',
-    'Sony Interactive Entertainment resmi memperkenalkan konsol tengah generasi PS5 Pro yang membawa teknologi PlayStation Spectral Super Resolution.',
-    '# Era Baru Konsol Premium: Mengapa PS5 Pro Menjadi Sorotan?
+    $ex$Sony Interactive Entertainment resmi memperkenalkan konsol tengah generasi PS5 Pro yang membawa teknologi PlayStation Spectral Super Resolution.$ex$,
+    $md$# Era Baru Konsol Premium: Mengapa PS5 Pro Menjadi Sorotan?
 
 Sony Interactive Entertainment secara resmi meluncurkan **PlayStation 5 Pro**, konsol varian tertinggi dari lini PS5 yang dirancang khusus untuk para gamer antusias yang menolak kompromi antara kualitas visual dan fluiditas framerate 60 FPS.
 
@@ -66,7 +66,7 @@ PS5 Standar : Fidelity Mode (30 FPS, 4K) vs Performance Mode (60 FPS, 1440p)
 PS5 Pro     : Pro Mode (60 FPS stabil pada Dynamic 4K dengan Full Ray Tracing)
 ```
 
-Bagi gamer yang mendambakan pengalaman gaming 4K tanpa penurunan framerate di judul-judul besar seperti *Final Fantasy VII Rebirth* dan *Marvel Spider-Man 2*, konsol ini menetapkan standar baru kenyamanan bermain.',
+Bagi gamer yang mendambakan pengalaman gaming 4K tanpa penurunan framerate di judul-judul besar seperti *Final Fantasy VII Rebirth* dan *Marvel Spider-Man 2*, konsol ini menetapkan standar baru kenyamanan bermain.$md$,
     'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=1200&q=80',
     'news',
     ARRAY['Hardware', 'Tech'],
@@ -78,8 +78,8 @@ Bagi gamer yang mendambakan pengalaman gaming 4K tanpa penurunan framerate di ju
 (
     'Review Black Myth: Wukong – Mahakarya Action RPG Visual Spektakuler dari Mitologi Tiongkok',
     'review-black-myth-wukong-mahakarya-action-rpg',
-    'Game Science berhasil membuktikan potensinya dengan menghadirkan petualangan Sang Kera Sakti yang menantang, memesona secara visual, dan kaya budaya.',
-    '# Petualangan Epik Sang Penakdir di Ranah Mitologi
+    $ex$Game Science berhasil membuktikan potensinya dengan menghadirkan petualangan Sang Kera Sakti yang menantang, memesona secara visual, dan kaya budaya.$ex$,
+    $md$# Petualangan Epik Sang Penakdir di Ranah Mitologi
 
 Ketika Game Science pertama kali merilis teaser singkat beberapa tahun silam, banyak yang meragukan apakah studio asal Hangzhou ini mampu mewujudkan visinya. Namun setelah menjelajahi lebih dari 40 jam dunia **Black Myth: Wukong**, kami dengan yakin menyatakan bahwa ini adalah salah satu karya seni video game terbaik tahun ini.
 
@@ -94,7 +94,7 @@ Berbeda dengan seri Souls konvensional, pertarungan Wukong mengutamakan kelincah
 - **Ratusan Desain Bos:** Variasi bos tidak repetitif, masing-masing memiliki lore mendalam yang menghormati kisah klasik *Journey to the West*.
 
 ### Kesimpulan
-Dengan kombat yang memacu adrenalin, desain artistik tanpa cela, dan musik orkestra tradisional yang menggetarkan jiwa, Black Myth: Wukong adalah pencapaian luar biasa yang wajib dimainkan.',
+Dengan kombat yang memacu adrenalin, desain artistik tanpa cela, dan musik orkestra tradisional yang menggetarkan jiwa, Black Myth: Wukong adalah pencapaian luar biasa yang wajib dimainkan.$md$,
     'https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?auto=format&fit=crop&w=1200&q=80',
     'review',
     ARRAY['Action RPG', 'Mythology', 'Soulslike'],
@@ -106,8 +106,8 @@ Dengan kombat yang memacu adrenalin, desain artistik tanpa cela, dan musik orkes
 (
     'Review Concord – Hero Shooter dengan Grafis Mumpuni tapi Kehilangan Jiwa dan Identitas Unik',
     'review-concord-hero-shooter-kehilangan-identitas',
-    'Meski memiliki mekanik tembak-menembak yang solid dan animasi berkualitas tinggi, Concord gagal memikat hati komunitas game kompetitif.',
-    '# Potensi yang Terjebak dalam Kejenuhan Pasar
+    $ex$Meski memiliki mekanik tembak-menembak yang solid dan animasi berkualitas tinggi, Concord gagal memikat hati komunitas game kompetitif.$ex$,
+    $md$# Potensi yang Terjebak dalam Kejenuhan Pasar
 
 Pasar live-service hero shooter bukanlah tempat yang ramah bagi pendatang baru. Firewalk Studios bersama Sony merilis **Concord** dengan ekspektasi tinggi, namun sayangnya game ini terasa datang terlambat 8 tahun di tengah dominasi *Overwatch* dan *Valorant*.
 
@@ -120,7 +120,7 @@ Secara teknis, Concord sebenarnya terasa solid. *Gunplay* memiliki bobot yang me
 - **Tempo Gameplay yang Canggung:** Pergerakan lambat berpadu dengan Time-to-Kill (TTK) yang kurang konsisten membuat pertarungan terasa membosankan setelah beberapa ronde.
 
 ### Kesimpulan
-Concord adalah bukti bahwa grafis bagus dan anggaran besar tidak menjamin kesuksesan tanpa identitas gameplay yang kuat dan pemahaman mendalam terhadap ekspektasi komunitas modern.',
+Concord adalah bukti bahwa grafis bagus dan anggaran besar tidak menjamin kesuksesan tanpa identitas gameplay yang kuat dan pemahaman mendalam terhadap ekspektasi komunitas modern.$md$,
     'https://images.unsplash.com/photo-1552824722-ddab1374e622?auto=format&fit=crop&w=1200&q=80',
     'review',
     ARRAY['Hero Shooter', 'Multiplayer', 'FPS'],
@@ -132,8 +132,8 @@ Concord adalah bukti bahwa grafis bagus dan anggaran besar tidak menjamin kesuks
 (
     'Panduan Lengkap Build Karakter Elden Ring: Shadow of the Erdtree untuk Pemula & Veteran',
     'panduan-lengkap-build-karakter-elden-ring-erdtree',
-    'Taklukkan Realm of Shadow dengan rekomendasi build senjata, status poin Scadutree Blessing, dan talismans terbaik.',
-    '# Bertahan Hidup di Realm of Shadow
+    $ex$Taklukkan Realm of Shadow dengan rekomendasi build senjata, status poin Scadutree Blessing, dan talismans terbaik.$ex$,
+    $md$# Bertahan Hidup di Realm of Shadow
 
 Ekspansi **Shadow of the Erdtree** membawa tingkat kesulitan yang menantang bahkan bagi karakter level 150 ke atas. Sistem baru bernama **Scadutree Blessing** mengubah skala perhitungan damage dan ketahanan karakter secara drastis.
 
@@ -143,7 +143,7 @@ Jangan terburu-buru menantang Boss utama sebelum mengumpulkan fragment:
 - Sebisa mungkin capai Blessing level 8 sebelum memasuki *Belurat Tower Settlement*.
 
 ## 2. Rekomendasi Build: Bleed & Deflection Bloodfiend
-Senjata **Bloodfiend\'s Arm** dengan affinity Blood menjadi salah satu senjata terkuat di DLC ini:
+Senjata **Bloodfiend's Arm** dengan affinity Blood menjadi salah satu senjata terkuat di DLC ini:
 
 | Status Poin | Nilai Rekomendasi |
 |---|---|
@@ -152,7 +152,7 @@ Senjata **Bloodfiend\'s Arm** dengan affinity Blood menjadi salah satu senjata t
 | Strength | 54 (Two-handing cap) |
 | Arcane | 50+ |
 
-Gunakan Talisman *Lord of Blood\'s Exultation* dan *Two-Handed Sword Talisman* untuk memaksimalkan *stagger damage* pada musuh bertubuh besar!',
+Gunakan Talisman *Lord of Blood's Exultation* dan *Two-Handed Sword Talisman* untuk memaksimalkan *stagger damage* pada musuh bertubuh besar!$md$,
     'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
     'guide',
     ARRAY['RPG', 'Open World', 'Soulslike'],
@@ -164,8 +164,8 @@ Gunakan Talisman *Lord of Blood\'s Exultation* dan *Two-Handed Sword Talisman* u
 (
     'Tips Kuasai Crosshair Placement & Sensitivitas di Valorant untuk Naik Rank ke Radiant',
     'tips-kuasai-crosshair-placement-sensitivitas-valorant',
-    'Kumpulan trik fundamental mengasah refleks headshot, teknik pre-aiming sudut sempit, dan kalibrasi eDPI yang optimal.',
-    '# Kuasai Seni Menembak Kepala: Panduan Naik Rank
+    $ex$Kumpulan trik fundamental mengasah refleks headshot, teknik pre-aiming sudut sempit, dan kalibrasi eDPI yang optimal.$ex$,
+    $md$# Kuasai Seni Menembak Kepala: Panduan Naik Rank
 
 Di game taktis sekelas Valorant, perbedaan antara pemain Gold dan Immortal sering kali bukan pada kecepatan reaksi murni, melainkan kebiasaan menjaga posisi bidikan (*crosshair placement*).
 
@@ -173,7 +173,7 @@ Di game taktis sekelas Valorant, perbedaan antara pemain Gold dan Immortal serin
 
 Banyak pemain pemula menggunakan sensitivitas yang terlalu tinggi sehingga sulit melakukan micro-adjustment:
 
-$$\\text{eDPI} = \\text{DPI Mouse} \\times \\text{In-game Sensitivity}$$
+$$\text{eDPI} = \text{DPI Mouse} \times \text{In-game Sensitivity}$$
 
 - **Rekomendasi Pro Player:** eDPI berada pada rentang **200 – 320**.
 - Contoh: Mouse 800 DPI dengan sensitivitas game 0.35 menghasilkan eDPI 280 (sangat stabil untuk duel jarak jauh).
@@ -181,10 +181,10 @@ $$\\text{eDPI} = \\text{DPI Mouse} \\times \\text{In-game Sensitivity}$$
 ## 3 Aturan Emas Pre-Aiming:
 1. **Gunakan Garis Tekstur Kotak:** Tinggi kepala karakter sama dengan garis horizontal pada peti dan tanda di dinding Haven atau Ascent.
 2. **Jauhi Dinding Saat Mengintip (*Slice the Pie*):** Semakin jauh Anda dari sudut tembok saat melangkah, semakin cepat Anda melihat musuh sebelum mereka melihat Anda.
-3. **Trigger Discipline:** Jangan langsung menembak begitu melihat siluet musuh; pastikan bidikan terkunci di kepala sebelum menekan klik kiri!',
+3. **Trigger Discipline:** Jangan langsung menembak begitu melihat siluet musuh; pastikan bidikan terkunci di kepala sebelum menekan klik kiri!$md$,
     'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=1200&q=80',
     'guide',
-    ARRAY['FPS', 'Esports', 'Competitive'],
+    ARRAY['FPS', 'Esports'],
     ARRAY['PC'],
     NULL,
     'published',
