@@ -1,22 +1,12 @@
 -- ==============================================================================
--- ANSHELTECH - 6 DUMMY ARTICLES SEED SCRIPT (PostgreSQL Dollar-Quoted)
--- Jalankan file SQL ini setelah menjalankan schema.sql di Supabase SQL Editor
+-- ANSHELTECH - 6 DUMMY ARTICLES SEED SCRIPT
+-- Jalankan file SQL ini di Supabase SQL Editor
 -- ==============================================================================
 
+-- 1. ARTIKEL NEWS 1
 INSERT INTO public.articles (
-    title,
-    slug,
-    excerpt,
-    content,
-    cover_image_url,
-    category,
-    genres,
-    platforms,
-    rating,
-    status,
-    published_at
-) VALUES
-(
+    title, slug, excerpt, content, cover_image_url, category, genres, platforms, rating, status, published_at
+) VALUES (
     'GTA VI Resmi Rilis Trailer Gameplay Perdana: Grafik Spektakuler dan Detail Vice City yang Hidup',
     'gta-vi-resmi-rilis-trailer-gameplay-perdana',
     $ex$Rockstar Games akhirnya memamerkan cuplikan gameplay perdana Grand Theft Auto VI yang memperlihatkan visual Next-Gen luar biasa di Leonida.$ex$,
@@ -43,8 +33,12 @@ GTA VI dijadwalkan meluncur untuk konsol PlayStation 5 dan Xbox Series X/S tahun
     NULL,
     'published',
     NOW() - INTERVAL '2 hours'
-),
-(
+);
+
+-- 2. ARTIKEL NEWS 2
+INSERT INTO public.articles (
+    title, slug, excerpt, content, cover_image_url, category, genres, platforms, rating, status, published_at
+) VALUES (
     'PlayStation 5 Pro Resmi Meluncur: Spesifikasi PSSR AI Upscaling dan Peningkatan Performa GPU 67%',
     'playstation-5-pro-resmi-meluncur-spesifikasi-pssr',
     $ex$Sony Interactive Entertainment resmi memperkenalkan konsol tengah generasi PS5 Pro yang membawa teknologi PlayStation Spectral Super Resolution.$ex$,
@@ -60,11 +54,9 @@ Arsitek konsol legendaris Mark Cerny menjelaskan bahwa PS5 Pro dibangun di atas 
 2. **Advanced Ray Tracing:** Kemampuan kalkulasi pantulan cahaya dinaikkan hingga 2-3 kali lipat dibandingkan PS5 standar.
 3. **PlayStation Spectral Super Resolution (PSSR):** Teknologi AI-driven upscaling berbasis machine learning yang mempertajam piksel gambar tanpa mengorbankan performa frame rate.
 
-```bash
-Perbandingan Performa:
-PS5 Standar : Fidelity Mode (30 FPS, 4K) vs Performance Mode (60 FPS, 1440p)
-PS5 Pro     : Pro Mode (60 FPS stabil pada Dynamic 4K dengan Full Ray Tracing)
-```
+> **Perbandingan Performa:**
+> - PS5 Standar: Fidelity Mode (30 FPS, 4K) vs Performance Mode (60 FPS, 1440p)
+> - PS5 Pro: Pro Mode (60 FPS stabil pada Dynamic 4K dengan Full Ray Tracing)
 
 Bagi gamer yang mendambakan pengalaman gaming 4K tanpa penurunan framerate di judul-judul besar seperti *Final Fantasy VII Rebirth* dan *Marvel Spider-Man 2*, konsol ini menetapkan standar baru kenyamanan bermain.$md$,
     'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=1200&q=80',
@@ -74,8 +66,12 @@ Bagi gamer yang mendambakan pengalaman gaming 4K tanpa penurunan framerate di ju
     NULL,
     'published',
     NOW() - INTERVAL '1 day'
-),
-(
+);
+
+-- 3. ARTIKEL REVIEW 1 (Rating 9.2)
+INSERT INTO public.articles (
+    title, slug, excerpt, content, cover_image_url, category, genres, platforms, rating, status, published_at
+) VALUES (
     'Review Black Myth: Wukong – Mahakarya Action RPG Visual Spektakuler dari Mitologi Tiongkok',
     'review-black-myth-wukong-mahakarya-action-rpg',
     $ex$Game Science berhasil membuktikan potensinya dengan menghadirkan petualangan Sang Kera Sakti yang menantang, memesona secara visual, dan kaya budaya.$ex$,
@@ -102,8 +98,12 @@ Dengan kombat yang memacu adrenalin, desain artistik tanpa cela, dan musik orkes
     9.2,
     'published',
     NOW() - INTERVAL '3 days'
-),
-(
+);
+
+-- 4. ARTIKEL REVIEW 2 (Rating 4.8)
+INSERT INTO public.articles (
+    title, slug, excerpt, content, cover_image_url, category, genres, platforms, rating, status, published_at
+) VALUES (
     'Review Concord – Hero Shooter dengan Grafis Mumpuni tapi Kehilangan Jiwa dan Identitas Unik',
     'review-concord-hero-shooter-kehilangan-identitas',
     $ex$Meski memiliki mekanik tembak-menembak yang solid dan animasi berkualitas tinggi, Concord gagal memikat hati komunitas game kompetitif.$ex$,
@@ -128,8 +128,12 @@ Concord adalah bukti bahwa grafis bagus dan anggaran besar tidak menjamin kesuks
     4.8,
     'published',
     NOW() - INTERVAL '5 days'
-),
-(
+);
+
+-- 5. ARTIKEL GUIDE 1
+INSERT INTO public.articles (
+    title, slug, excerpt, content, cover_image_url, category, genres, platforms, rating, status, published_at
+) VALUES (
     'Panduan Lengkap Build Karakter Elden Ring: Shadow of the Erdtree untuk Pemula & Veteran',
     'panduan-lengkap-build-karakter-elden-ring-erdtree',
     $ex$Taklukkan Realm of Shadow dengan rekomendasi build senjata, status poin Scadutree Blessing, dan talismans terbaik.$ex$,
@@ -143,7 +147,7 @@ Jangan terburu-buru menantang Boss utama sebelum mengumpulkan fragment:
 - Sebisa mungkin capai Blessing level 8 sebelum memasuki *Belurat Tower Settlement*.
 
 ## 2. Rekomendasi Build: Bleed & Deflection Bloodfiend
-Senjata **Bloodfiend's Arm** dengan affinity Blood menjadi salah satu senjata terkuat di DLC ini:
+Senjata **Bloodfiend Arm** dengan affinity Blood menjadi salah satu senjata terkuat di DLC ini:
 
 | Status Poin | Nilai Rekomendasi |
 |---|---|
@@ -152,7 +156,7 @@ Senjata **Bloodfiend's Arm** dengan affinity Blood menjadi salah satu senjata te
 | Strength | 54 (Two-handing cap) |
 | Arcane | 50+ |
 
-Gunakan Talisman *Lord of Blood's Exultation* dan *Two-Handed Sword Talisman* untuk memaksimalkan *stagger damage* pada musuh bertubuh besar!$md$,
+Gunakan Talisman *Lord of Blood Exultation* dan *Two-Handed Sword Talisman* untuk memaksimalkan *stagger damage* pada musuh bertubuh besar!$md$,
     'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
     'guide',
     ARRAY['RPG', 'Open World', 'Soulslike'],
@@ -160,8 +164,12 @@ Gunakan Talisman *Lord of Blood's Exultation* dan *Two-Handed Sword Talisman* un
     NULL,
     'published',
     NOW() - INTERVAL '6 days'
-),
-(
+);
+
+-- 6. ARTIKEL GUIDE 2
+INSERT INTO public.articles (
+    title, slug, excerpt, content, cover_image_url, category, genres, platforms, rating, status, published_at
+) VALUES (
     'Tips Kuasai Crosshair Placement & Sensitivitas di Valorant untuk Naik Rank ke Radiant',
     'tips-kuasai-crosshair-placement-sensitivitas-valorant',
     $ex$Kumpulan trik fundamental mengasah refleks headshot, teknik pre-aiming sudut sempit, dan kalibrasi eDPI yang optimal.$ex$,
@@ -173,8 +181,7 @@ Di game taktis sekelas Valorant, perbedaan antara pemain Gold dan Immortal serin
 
 Banyak pemain pemula menggunakan sensitivitas yang terlalu tinggi sehingga sulit melakukan micro-adjustment:
 
-$$\text{eDPI} = \text{DPI Mouse} \times \text{In-game Sensitivity}$$
-
+- **eDPI = DPI Mouse x In-game Sensitivity**
 - **Rekomendasi Pro Player:** eDPI berada pada rentang **200 – 320**.
 - Contoh: Mouse 800 DPI dengan sensitivitas game 0.35 menghasilkan eDPI 280 (sangat stabil untuk duel jarak jauh).
 
