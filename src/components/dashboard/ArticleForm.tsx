@@ -182,7 +182,11 @@ export function ArticleForm({ initialData, isEditing = false }: ArticleFormProps
       }
 
       const supabase = createClient();
-      const payload = {
+
+      // Get current logged-in user to attach as author
+      const { data: { user } } = await supabase.auth.getUser();
+
+      const payload: Record<string, any> = {
         title: title.trim(),
         slug: slug.trim(),
         excerpt: excerpt.trim() || null,
@@ -196,6 +200,11 @@ export function ArticleForm({ initialData, isEditing = false }: ArticleFormProps
         published_at: status === 'published' ? new Date().toISOString() : null,
         updated_at: new Date().toISOString(),
       };
+
+      // Attach author_id only if user is authenticated
+      if (user?.id) {
+        payload.author_id = user.id;
+      }
 
       if (isEditing && initialData) {
         const { error } = await supabase
