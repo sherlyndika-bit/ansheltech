@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Gamepad2, Heart, Github, Twitter, Youtube } from 'lucide-react';
+import { Gamepad2, Twitter, Youtube, Disc as DiscordIcon, ShieldCheck } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -18,14 +18,14 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Portal media berita video game independen, review jujur dengan rating transparan, dan panduan komprehensif untuk para gamer di seluruh Indonesia.
+              Media jurnalisme video game independen. Menyajikan berita aktual, ulasan mendalam dengan skor rating transparan, serta panduan gameplay komprehensif untuk gamer Indonesia.
             </p>
           </div>
 
           {/* Nav Links */}
           <div>
-            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider mb-3">
-              Kategori
+            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider mb-3 font-mono">
+              Kanal Berita
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
@@ -40,7 +40,12 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/kategori/guide" className="hover:text-cyan-400 transition-colors">
-                  Panduan & Tips
+                  Panduan & Tips Gameplay
+                </Link>
+              </li>
+              <li>
+                <Link href="/genre/Esports" className="hover:text-cyan-400 transition-colors">
+                  Turnamen Esports
                 </Link>
               </li>
             </ul>
@@ -48,7 +53,7 @@ export function Footer() {
 
           {/* Platform Links */}
           <div>
-            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider mb-3">
+            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider mb-3 font-mono">
               Platform
             </h4>
             <ul className="space-y-2 text-xs">
@@ -75,40 +80,79 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Admin & System */}
+          {/* Editorial & About */}
           <div>
-            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider mb-3">
-              Sistem
+            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider mb-3 font-mono">
+              Redaksi & Media
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/dashboard" className="text-cyan-400 hover:underline">
-                  Dashboard Editor & Admin
-                </Link>
+                <span className="text-slate-400 hover:text-slate-200 cursor-pointer">
+                  Standar Penilaian & Rating
+                </span>
               </li>
               <li>
-                <span className="text-slate-500">Tech Stack: Next.js 15 & Supabase</span>
+                <span className="text-slate-400 hover:text-slate-200 cursor-pointer">
+                  Pedoman Editorial
+                </span>
+              </li>
+              <li>
+                <span className="text-slate-400 hover:text-slate-200 cursor-pointer">
+                  Hubungi Tim Redaksi
+                </span>
+              </li>
+              <li>
+                <span className="text-slate-400 hover:text-slate-200 cursor-pointer">
+                  Kebijakan Privasi
+                </span>
               </li>
               <li className="pt-2 flex items-center gap-3">
-                <a href="#" className="p-1.5 rounded-lg bg-slate-800 hover:text-white transition-colors">
-                  <Github className="w-4 h-4" />
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-cyan-400 transition-colors"
+                  title="Twitter / X"
+                >
+                  <Twitter className="w-3.5 h-3.5" />
                 </a>
-                <a href="#" className="p-1.5 rounded-lg bg-slate-800 hover:text-cyan-400 transition-colors">
-                  <Twitter className="w-4 h-4" />
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-500 transition-colors"
+                  title="YouTube"
+                >
+                  <Youtube className="w-3.5 h-3.5" />
                 </a>
-                <a href="#" className="p-1.5 rounded-lg bg-slate-800 hover:text-rose-500 transition-colors">
-                  <Youtube className="w-4 h-4" />
+                <a
+                  href="https://discord.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-indigo-400 transition-colors"
+                  title="Komunitas Discord"
+                >
+                  <DiscordIcon className="w-3.5 h-3.5" />
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
+        {/* Bottom Bar with subtle editorial login */}
         <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
           <p>© {new Date().getFullYear()} Ansheltech Game Media. Hak cipta dilindungi.</p>
-          <p className="flex items-center gap-1 mt-2 sm:mt-0">
-            Dibuat untuk para antusias video game.
-          </p>
+          <div className="flex items-center gap-4 mt-2 sm:mt-0">
+            <span>Diterbitkan di Indonesia</span>
+            <span>•</span>
+            <Link
+              href="/dashboard/login"
+              className="text-slate-600 hover:text-slate-400 transition-colors"
+              title="Khusus Editor & Jurnalis Ansheltech"
+            >
+              Akses Redaksi
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

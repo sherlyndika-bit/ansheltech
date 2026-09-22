@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { getPublishedArticles } from '@/lib/articles';
 import { ArticleCard } from '@/components/public/ArticleCard';
 import { ReviewCard } from '@/components/public/ReviewCard';
-import { Flame, Sparkles, TrendingUp, ChevronRight, Gamepad2, ArrowUpRight } from 'lucide-react';
+import { NewsletterForm } from '@/components/public/NewsletterForm';
+import { Flame, TrendingUp, ChevronRight, Mail, Bell } from 'lucide-react';
 
 export const revalidate = 60; // Revalidate every minute
 
@@ -17,21 +18,52 @@ export default async function HomePage() {
   // Reviews section articles
   const reviewArticles = articles.filter((a) => a.category === 'review');
 
+  const trendingTopics = [
+    { label: 'GTA VI', href: '/genre/Open%20World' },
+    { label: 'PS5 Pro', href: '/platform/PlayStation%205' },
+    { label: 'Black Myth: Wukong', href: '/genre/Soulslike' },
+    { label: 'Elden Ring DLC', href: '/genre/RPG' },
+    { label: 'Valorant', href: '/genre/FPS' },
+    { label: 'Nintendo Switch', href: '/platform/Nintendo%20Switch' },
+    { label: 'PC Master Race', href: '/platform/PC' },
+  ];
+
   return (
     <div className="space-y-16 pb-20">
-      {/* Hero / Banner Section */}
-      <section className="relative overflow-hidden pt-8 pb-4">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-[#080c14] to-[#080c14] pointer-events-none" />
+      {/* Trending Topics Ticker Bar */}
+      <section className="border-b border-slate-800/80 bg-[#090e18]/90 py-2.5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 overflow-x-auto text-xs no-scrollbar">
+          <div className="flex items-center gap-1.5 text-cyan-400 font-bold whitespace-nowrap uppercase tracking-wider font-mono">
+            <span className="flex h-2 w-2 rounded-full bg-cyan-400 animate-ping" />
+            Topik Hangat:
+          </div>
+          <div className="flex items-center gap-2 whitespace-nowrap">
+            {trendingTopics.map((topic) => (
+              <Link
+                key={topic.label}
+                href={topic.href}
+                className="px-2.5 py-1 rounded-full bg-slate-900/90 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 border border-slate-800/80 transition-colors"
+              >
+                #{topic.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hero / Featured Article Section */}
+      <section className="relative overflow-hidden pt-2 pb-4">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/15 via-[#080c14] to-[#080c14] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="flex h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="flex h-2.5 w-2.5 rounded-full bg-cyan-400" />
               <span className="text-xs uppercase tracking-widest font-mono text-cyan-400 font-semibold">
-                Sorotan Utama Hari Ini
+                Laporan Utama Redaksi
               </span>
             </div>
             <span className="text-xs text-slate-500 font-mono hidden sm:inline">
-              Update Terbaru 2026
+              Update Terkini
             </span>
           </div>
 
@@ -39,36 +71,6 @@ export default async function HomePage() {
           {featuredArticle && (
             <ArticleCard article={featuredArticle} featured={true} />
           )}
-        </div>
-      </section>
-
-      {/* Quick Category Bar */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-4 rounded-2xl bg-[#0b1220]/80 border border-slate-800/80 flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span className="text-xs font-semibold text-slate-300">Jelajahi Berdasarkan Kategori:</span>
-          </div>
-          <div className="flex items-center gap-2 flex-wrap text-xs">
-            <Link
-              href="/kategori/news"
-              className="px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 transition-colors"
-            >
-              📰 Berita Game
-            </Link>
-            <Link
-              href="/review"
-              className="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 transition-colors"
-            >
-              ⭐ Review & Skor
-            </Link>
-            <Link
-              href="/kategori/guide"
-              className="px-3 py-1.5 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 transition-colors"
-            >
-              🧭 Walkthrough & Guide
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -81,10 +83,10 @@ export default async function HomePage() {
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                Artikel Terbaru
+                Berita & Analisis Terbaru
               </h2>
               <p className="text-xs text-slate-400">
-                Informasi aktual industri game, pengumuman rilis, dan tren terkini
+                Informasi aktual industri video game, pengumuman perilisan, dan teknologi komputasi
               </p>
             </div>
           </div>
@@ -121,7 +123,7 @@ export default async function HomePage() {
                   </span>
                 </div>
                 <p className="text-xs text-slate-400">
-                  Ulasan mendalam dari tim redaksi dengan sistem penilaian objektif
+                  Ulasan mendalam dari tim redaksi dengan sistem penilaian objektif dan transparan
                 </p>
               </div>
             </div>
@@ -142,26 +144,29 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Community Banner Callout */}
+      {/* Professional Reader Newsletter Banner (Replaced Internal Author Callout) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-gradient-to-r from-cyan-950/40 via-slate-900 to-purple-950/40 border border-cyan-500/30 p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2">
-            <span className="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">
-              Ansheltech Author & Editor Portal
-            </span>
-            <h3 className="text-xl sm:text-2xl font-black text-white">
-              Punya Berita atau Ulasan Game untuk Dibagikan?
+        <div className="rounded-3xl bg-gradient-to-r from-slate-900 via-[#0d1527] to-slate-900 border border-slate-800 p-8 sm:p-12 relative overflow-hidden">
+          <div className="max-w-2xl space-y-3 relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-semibold">
+              <Mail className="w-3.5 h-3.5" /> Buletin Mingguan Ansheltech
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              Jangan Lewatkan Berita & Diskon Game Terbaik
             </h3>
-            <p className="text-sm text-slate-400 max-w-xl">
-              Masuk ke Dashboard Admin untuk membuat draf artikel baru, mengunggah cover image ke Supabase Storage, dan mempublikasikannya ke komunitas.
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Dapatkan rangkuman ulasan game terbaru, rumor industri terpercaya, dan tips walkthrough langsung ke kotak masuk email Anda setiap akhir pekan.
+            </p>
+
+            <NewsletterForm />
+            <p className="text-[11px] text-slate-500">
+              Bebas spam. Anda dapat berhenti berlangganan kapan saja dengan 1 klik.
             </p>
           </div>
-          <Link
-            href="/dashboard"
-            className="whitespace-nowrap px-6 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black shadow-neon-cyan transition-all flex items-center gap-2"
-          >
-            Buka Dashboard <ArrowUpRight className="w-4 h-4" />
-          </Link>
+
+          <div className="absolute right-0 bottom-0 translate-x-12 translate-y-12 opacity-10 pointer-events-none hidden lg:block">
+            <Bell className="w-80 h-80 text-cyan-400" />
+          </div>
         </div>
       </section>
     </div>

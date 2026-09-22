@@ -2,17 +2,17 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   Gamepad2,
   Flame,
   Search,
   Menu,
   X,
-  ShieldAlert,
   ChevronDown,
   Layers,
-  Monitor
+  Monitor,
+  Sparkles
 } from 'lucide-react';
 import { GENRE_OPTIONS, PLATFORM_OPTIONS } from '@/types/database';
 
@@ -20,16 +20,28 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [platformOpen, setPlatformOpen] = useState(false);
   const [genreOpen, setGenreOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const pathname = usePathname();
+  const router = useRouter();
 
   const isActive = (path: string) => pathname === path;
 
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/genre/${encodeURIComponent(searchQuery.trim())}`);
+      setSearchOpen(false);
+      setSearchQuery('');
+    }
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-[#080c14]/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-[#080c14]/95 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
+          <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 p-0.5 shadow-neon-cyan transition-transform group-hover:scale-105">
               <div className="w-full h-full bg-[#080c14] rounded-[10px] flex items-center justify-center">
                 <Gamepad2 className="w-5 h-5 text-cyan-400 group-hover:text-white transition-colors" />
@@ -51,7 +63,7 @@ export function Navbar() {
               href="/"
               className={`px-3.5 py-2 rounded-lg transition-colors ${
                 isActive('/')
-                  ? 'text-cyan-400 bg-cyan-950/40 border border-cyan-500/20'
+                  ? 'text-cyan-400 bg-cyan-950/40 border border-cyan-500/20 font-semibold'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
               }`}
             >
@@ -62,7 +74,7 @@ export function Navbar() {
               href="/kategori/news"
               className={`px-3.5 py-2 rounded-lg transition-colors ${
                 pathname === '/kategori/news'
-                  ? 'text-cyan-400 bg-cyan-950/40 border border-cyan-500/20'
+                  ? 'text-cyan-400 bg-cyan-950/40 border border-cyan-500/20 font-semibold'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
               }`}
             >
@@ -73,7 +85,7 @@ export function Navbar() {
               href="/review"
               className={`px-3.5 py-2 rounded-lg flex items-center gap-1.5 transition-colors ${
                 pathname === '/review'
-                  ? 'text-amber-400 bg-amber-950/40 border border-amber-500/20'
+                  ? 'text-amber-400 bg-amber-950/40 border border-amber-500/20 font-semibold'
                   : 'text-slate-300 hover:text-amber-400 hover:bg-slate-800/50'
               }`}
             >
@@ -85,7 +97,7 @@ export function Navbar() {
               href="/kategori/guide"
               className={`px-3.5 py-2 rounded-lg transition-colors ${
                 pathname === '/kategori/guide'
-                  ? 'text-cyan-400 bg-cyan-950/40 border border-cyan-500/20'
+                  ? 'text-cyan-400 bg-cyan-950/40 border border-cyan-500/20 font-semibold'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
               }`}
             >
@@ -143,26 +155,28 @@ export function Navbar() {
             </div>
           </nav>
 
-          {/* Right Action Buttons */}
-          <div className="hidden sm:flex items-center gap-3">
-            <Link
-              href="/dashboard"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-slate-800 to-slate-900 hover:from-cyan-950 hover:to-slate-900 text-slate-200 hover:text-cyan-400 border border-slate-700 hover:border-cyan-500/50 transition-all shadow-sm"
-            >
-              <ShieldAlert className="w-3.5 h-3.5 text-cyan-400" />
-              Admin Dashboard
-            </Link>
+          {/* Right Action: Editorial Search Box */}
+          <div className="hidden sm:flex items-center gap-2">
+            <form onSubmit={handleSearchSubmit} className="relative">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Cari berita, review game..."
+                className="w-48 lg:w-64 pl-9 pr-3 py-1.5 text-xs bg-slate-900/80 border border-slate-800 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/30 transition-all font-sans"
+              />
+            </form>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
-            <Link
-              href="/dashboard"
+            <button
+              onClick={() => setSearchOpen(!searchOpen)}
               className="p-2 text-slate-300 hover:text-cyan-400"
-              title="Admin"
             >
-              <ShieldAlert className="w-5 h-5 text-cyan-400" />
-            </Link>
+              <Search className="w-5 h-5" />
+            </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60"
@@ -171,6 +185,23 @@ export function Navbar() {
             </button>
           </div>
         </div>
+
+        {/* Mobile Search Bar Dropdown */}
+        {searchOpen && (
+          <div className="md:hidden pb-3 pt-1">
+            <form onSubmit={handleSearchSubmit} className="relative">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Cari artikel, review, atau platform..."
+                className="w-full pl-9 pr-4 py-2 text-xs bg-slate-900 border border-slate-700 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+                autoFocus
+              />
+            </form>
+          </div>
+        )}
       </div>
 
       {/* Mobile Drawer */}
@@ -204,14 +235,23 @@ export function Navbar() {
           >
             Guide & Tips
           </Link>
-          <div className="pt-2 border-t border-slate-800/80">
-            <Link
-              href="/dashboard"
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-cyan-600/20 text-cyan-300 border border-cyan-500/40 text-sm font-semibold"
-            >
-              <ShieldAlert className="w-4 h-4" /> Masuk Admin Dashboard
-            </Link>
+
+          <div className="pt-3 border-t border-slate-800/80">
+            <p className="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-2">
+              Platform Populer
+            </p>
+            <div className="grid grid-cols-2 gap-1 px-1">
+              {PLATFORM_OPTIONS.slice(0, 4).map((p) => (
+                <Link
+                  key={p}
+                  href={`/platform/${encodeURIComponent(p)}`}
+                  onClick={() => setMobileOpen(false)}
+                  className="px-2.5 py-1.5 rounded text-xs text-slate-300 hover:bg-slate-800 hover:text-cyan-400"
+                >
+                  {p}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       )}
