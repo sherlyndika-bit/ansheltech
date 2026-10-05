@@ -146,6 +146,8 @@
   .platform-strip a:hover { color: #4bc8ff; }
   .home-sections { padding-top: 40px; padding-bottom: 50px; display: flex; flex-direction: column; gap: 48px; }
   .empty-state { padding: 45px 25px; border: 1px dashed #204966; border-radius: 9px; color: #94b1cc; text-align: center; font-size: 15px; }
+  .form-input { width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; padding: 8px 12px; color: #1e293b; font-size: 12px; }
+  .form-input:focus { outline: none; border-color: #0891b2; box-shadow: 0 0 0 2px #0891b21f; }
   .site-footer { border-top: 1px solid #17374f; background: linear-gradient(110deg, #041221, #020b15); }
   .footer-grid { display: grid; grid-template-columns: 1.35fr .8fr .8fr 1.4fr; gap: 55px; padding-top: 30px; padding-bottom: 22px; }
   .site-footer .brand-name { font-size: 17px; }
@@ -219,3 +221,4 @@
   html { scroll-behavior: auto !important; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
