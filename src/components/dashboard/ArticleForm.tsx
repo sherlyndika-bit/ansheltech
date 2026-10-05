@@ -13,6 +13,7 @@ import {
 import { slugify } from '@/lib/utils';
 import { createClient } from '@/lib/supabase/client';
 import { uploadArticleCover } from '@/lib/supabase/storage';
+import { revalidateAll } from '@/app/actions';
 import { MarkdownRenderer } from '@/components/public/MarkdownRenderer';
 import { RatingBadge } from '@/components/public/RatingBadge';
 import {
@@ -217,6 +218,9 @@ export function ArticleForm({ initialData, isEditing = false }: ArticleFormProps
         const { error } = await supabase.from('articles').insert([payload]);
         if (error) throw error;
       }
+
+      // Revalidate cache to ensure public pages show the updated data
+      await revalidateAll();
 
       setSuccessMessage(
         status === 'published'
