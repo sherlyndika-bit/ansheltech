@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-barlow)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
       colors: {
         gaming: {
           dark: "#080c14",

@@ -25,7 +25,7 @@ export default async function GenrePage({ params }: PageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
       <div className="border-b border-slate-800 pb-6">
-        <div className="flex items-center gap-2 text-lime-400 text-xs uppercase font-sans tracking-wider mb-2">
+        <div className="flex items-center gap-2 text-sky-400 text-xs uppercase font-sans tracking-wider mb-2">
           <Tag className="w-4 h-4" /> Filter Genre
         </div>
         <h1 className="text-2xl sm:text-4xl font-extrabold text-white">
@@ -43,7 +43,7 @@ export default async function GenrePage({ params }: PageProps) {
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 text-slate-500 bg-[#181b19] rounded-2xl border border-slate-800">
+        <div className="text-center py-16 text-slate-500 bg-[#061525] rounded-2xl border border-slate-800">
           Belum ada artikel untuk genre {decodedGenre}.
         </div>
       )}

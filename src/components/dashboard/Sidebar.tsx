@@ -66,14 +66,14 @@ export function Sidebar() {
     <aside id="admin-navigation" className={`${mobileOpen ? 'flex' : 'hidden'} w-full md:w-64 shrink-0 bg-slate-900 border-r border-slate-800 md:flex flex-col md:h-screen md:sticky top-0 text-slate-300 select-none z-30`}>
       {/* Brand Header */}
       <div className="h-16 flex items-center px-6 border-b border-slate-800/80 gap-3">
-        <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-lime-500 to-blue-600 p-0.5 shadow-sm">
+        <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 p-0.5 shadow-sm">
           <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
-            <Gamepad2 className="w-5 h-5 text-lime-400" />
+            <Gamepad2 className="w-5 h-5 text-cyan-400" />
           </div>
         </div>
         <div>
           <span className="font-extrabold text-base text-white tracking-wider font-sans">
-            ANSHEL<span className="text-lime-400">ADMIN</span>
+            ANSHEL<span className="text-cyan-400">ADMIN</span>
           </span>
           <span className="block text-[10px] text-slate-400 font-sans font-normal">
             Content Management
@@ -98,7 +98,7 @@ export function Sidebar() {
                 aria-current={active ? 'page' : undefined}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   active
-                    ? 'bg-lime-500 text-slate-950 font-bold shadow-sm shadow-lime-500/30'
+                    ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm shadow-cyan-500/30'
                     : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
                 }`}
               >
@@ -127,10 +127,10 @@ export function Sidebar() {
           <Link
             href="/"
             target="_blank"
-            className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-lime-400 hover:bg-slate-800/70 transition-all"
+            className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/70 transition-all"
           >
             <div className="flex items-center gap-2.5">
-              <ExternalLink className="w-4 h-4 text-lime-400" />
+              <ExternalLink className="w-4 h-4 text-cyan-400" />
               <span>Lihat Website Utama</span>
             </div>
           </Link>
@@ -141,7 +141,7 @@ export function Sidebar() {
       <div className="p-4 border-t border-slate-800/80 bg-slate-950/50">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5 truncate">
-            <div className="w-8 h-8 rounded-full bg-lime-900/50 border border-lime-500/30 flex items-center justify-center font-bold text-xs text-lime-300">
+            <div className="w-8 h-8 rounded-full bg-cyan-900/50 border border-cyan-500/30 flex items-center justify-center font-bold text-xs text-cyan-300">
               AD
             </div>
             <div className="truncate">

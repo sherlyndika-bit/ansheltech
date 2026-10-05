@@ -1,5 +1,16 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import localFont from 'next/font/local';
+
+const barlow = localFont({
+  src: [
+    { path: './fonts/Barlow-Regular.ttf', weight: '400', style: 'normal' },
+    { path: './fonts/Barlow-Semibold.ttf', weight: '600', style: 'normal' },
+    { path: './fonts/Barlow-Extrabold.ttf', weight: '800', style: 'normal' },
+  ],
+  variable: '--font-barlow',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Ansheltech — Portal Berita Game, Review & Guide Terkini',
@@ -12,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className="dark scroll-smooth">
-      <body className="min-h-screen bg-[#101211] text-slate-100 antialiased selection:bg-lime-300 selection:text-black">
+    <html lang="id" className={`${barlow.variable} dark scroll-smooth`}>
+      <body className="min-h-screen bg-[#030e1b] text-slate-100 antialiased selection:bg-sky-400 selection:text-black">
         {children}
       </body>
     </html>
