@@ -1,10 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   Gamepad2,
+  Menu,
+  X,
   LayoutDashboard,
   FileText,
   PlusCircle,
@@ -17,6 +19,7 @@ import {
 import { createClient } from '@/lib/supabase/client';
 
 export function Sidebar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -54,11 +57,13 @@ export function Sidebar() {
 
   const isActive = (href: string, exact: boolean) => {
     if (exact) return pathname === href;
-    return pathname.startsWith(href) && (href !== '/dashboard' || pathname === '/dashboard');
+    return pathname.startsWith(href) && pathname !== '/dashboard/articles/new';
   };
 
   return (
-    <aside className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col h-screen sticky top-0 text-slate-300 select-none z-30">
+    <>
+    <div className="flex h-16 items-center justify-between border-b border-slate-200 bg-white px-4 md:hidden"><Link href="/dashboard" className="font-bold text-slate-900">Ansheltech <span className="text-slate-500">Studio</span></Link><button aria-label={mobileOpen ? 'Tutup navigasi admin' : 'Buka navigasi admin'} aria-expanded={mobileOpen} aria-controls="admin-navigation" onClick={() => setMobileOpen(!mobileOpen)} className="rounded-lg border border-slate-200 p-3">{mobileOpen ? <X size={18} /> : <Menu size={18} />}</button></div>
+    <aside id="admin-navigation" className={`${mobileOpen ? 'flex' : 'hidden'} w-full md:w-64 shrink-0 bg-slate-900 border-r border-slate-800 md:flex flex-col md:h-screen md:sticky top-0 text-slate-300 select-none z-30`}>
       {/* Brand Header */}
       <div className="h-16 flex items-center px-6 border-b border-slate-800/80 gap-3">
         <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 p-0.5 shadow-sm">
@@ -67,7 +72,7 @@ export function Sidebar() {
           </div>
         </div>
         <div>
-          <span className="font-extrabold text-base text-white tracking-wider font-mono">
+          <span className="font-extrabold text-base text-white tracking-wider font-sans">
             ANSHEL<span className="text-cyan-400">ADMIN</span>
           </span>
           <span className="block text-[10px] text-slate-400 font-sans font-normal">
@@ -79,7 +84,7 @@ export function Sidebar() {
       {/* Navigation Menu */}
       <div className="flex-1 px-4 py-6 space-y-6 overflow-y-auto">
         <div className="space-y-1">
-          <p className="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 font-mono mb-2">
+          <p className="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 font-sans mb-2">
             Menu Utama
           </p>
           {navItems.map((item) => {
@@ -89,6 +94,8 @@ export function Sidebar() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setMobileOpen(false)}
+                aria-current={active ? 'page' : undefined}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   active
                     ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm shadow-cyan-500/30'
@@ -103,7 +110,7 @@ export function Sidebar() {
         </div>
 
         <div className="space-y-1 pt-4 border-t border-slate-800/80">
-          <p className="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 font-mono mb-2">
+          <p className="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 font-sans mb-2">
             Pintasan Cepat
           </p>
           <Link
@@ -152,5 +159,6 @@ export function Sidebar() {
         </div>
       </div>
     </aside>
+    </>
   );
 }

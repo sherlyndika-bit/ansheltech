@@ -12,12 +12,14 @@ Portal website berita game modern, ulasan mendalam dengan sistem rating dinamis,
 ## Fitur Utama
 
 ### 1. Sisi Publik (Gamer Portal)
-- **Desain Dark Gaming Aesthetic:** Nuansa gelap dengan aksen neon (`cyan`, `amber`, `purple`), efek glow, dan tipografi gaming modern.
+- **Desain Gaming Editorial:** Navy gelap, aksen cyan, font Barlow lokal, hero sinematik, dan layout responsif.
 - **Beranda Interaktif (`/`):**
   - Section **Featured Article** hero banner.
   - Grid artikel published terbaru dengan tanggal, estimasi waktu baca, dan tag platform/genre.
-  - Section **Spotlight Review Game** dengan kartu rating khusus.
+  - Kartu review dengan skor dan bagian panduan pilihan.
 - **Halaman Detail Artikel (`/artikel/[slug]`):**
+  - Hero gambar lebar, daftar isi otomatis dengan penanda bagian aktif, dan sidebar artikel pilihan.
+  - Daftar isi dapat dibuka-tutup di mobile; tabel lebar dapat digeser tanpa membuat halaman melebar.
   - Rendering konten Markdown lengkap (Heading, list, blockquote, code syntax, tabel).
   - Tampilan rating badge verdict untuk kategori review.
   - Rekomendasi artikel terkait (*Related Articles*) berdasarkan genre & topik serupa.
@@ -27,6 +29,9 @@ Portal website berita game modern, ulasan mendalam dengan sistem rating dinamis,
     - 🟡 **Kuning (5.0 – 7.9):** Cukup Baik
     - 🔴 **Merah (< 5.0):** Kurang Direkomendasikan
 - **Halaman Filter:** Filter artikel berdasarkan kategori (`/kategori/[category]`), genre (`/genre/[genre]`), dan platform (`/platform/[platform]`).
+- **Pencarian (`/cari?q=...`):** Cari judul, isi artikel, genre, atau platform dari header.
+
+Font Barlow disertakan dengan lisensi OFL di `src/app/fonts/OFL.txt`. Artwork contoh Elden Ring berasal dari halaman resmi Bandai Namco; hanya URL foto demo lama yang diganti, sedangkan cover yang diunggah editor tetap dipakai.
 
 ### 2. Sisi Dashboard Admin (`/dashboard`)
 - **Desain Panel Bersih & Terang:** Layout modern berbasis sidebar + topbar standar admin profesional.
