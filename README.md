@@ -1,4 +1,4 @@
-# Ansheltech — Portal Berita Game, Review & Guide (Next.js 15 & Supabase)
+# Ansheltech â€” Portal Berita Game, Review & Guide (Next.js 15 & Supabase)
 
 Portal website berita game modern, ulasan mendalam dengan sistem rating dinamis, serta panduan tips gameplay yang dilengkapi dengan dashboard admin CMS komprehensif.
 
@@ -25,9 +25,9 @@ Portal website berita game modern, ulasan mendalam dengan sistem rating dinamis,
   - Rekomendasi artikel terkait (*Related Articles*) berdasarkan genre & topik serupa.
 - **Halaman Khusus Review (`/review`):**
   - Galeri ulasan game lengkap dengan indikator skor warna transparan:
-    - 🟢 **Hijau (≥ 8.0):** Sangat Direkomendasikan
-    - 🟡 **Kuning (5.0 – 7.9):** Cukup Baik
-    - 🔴 **Merah (< 5.0):** Kurang Direkomendasikan
+    - ðŸŸ¢ **Hijau (â‰¥ 8.0):** Sangat Direkomendasikan
+    - ðŸŸ¡ **Kuning (5.0 â€“ 7.9):** Cukup Baik
+    - ðŸ”´ **Merah (< 5.0):** Kurang Direkomendasikan
 - **Halaman Filter:** Filter artikel berdasarkan kategori (`/kategori/[category]`), genre (`/genre/[genre]`), dan platform (`/platform/[platform]`).
 - **Pencarian (`/cari?q=...`):** Cari judul, isi artikel, genre, atau platform dari header.
 
@@ -58,7 +58,7 @@ Proyek ini telah dilengkapi dengan skrip SQL siap pakai di direktori `supabase/`
 
 ### 1. Jalankan Skema Database
 Buka **Supabase Dashboard** > **SQL Editor** > **New Query**, kemudian salin dan jalankan seluruh isi file:
-📄 `supabase/schema.sql`
+ðŸ“„ `supabase/schema.sql`
 
 File ini akan otomatis membuat:
 1. Enum types: `article_category` (`news`, `review`, `guide`) dan `article_status` (`draft`, `published`).
@@ -69,7 +69,7 @@ File ini akan otomatis membuat:
 
 ### 2. Masukkan Data Seed (6 Dummy Articles)
 Buka tab baru di **SQL Editor** Supabase, lalu jalankan isi file:
-📄 `supabase/seed.sql`
+ðŸ“„ `supabase/seed.sql`
 
 Data seed mencakup:
 - 2 Berita Game (GTA VI Trailer & PS5 Pro)
@@ -121,3 +121,4 @@ Buka peramban di [http://localhost:3000](http://localhost:3000).
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 4. Klik tombol **Deploy**. Aplikasi akan otomatis ter-build dan online.
+
