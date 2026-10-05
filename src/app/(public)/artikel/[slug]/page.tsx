@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import { ArticleCover } from '@/components/public/ArticleCover';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getRelatedArticles } from '@/lib/articles';
@@ -73,7 +73,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         <div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-cyan-400 transition-colors py-1 px-2 -ml-2 rounded-lg hover:bg-slate-800/50"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-lime-400 transition-colors py-1 px-2 -ml-2 rounded-lg hover:bg-slate-800/50"
           >
             <ArrowLeft className="w-4 h-4" /> Kembali ke Beranda
           </Link>
@@ -84,7 +84,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           <div className="flex items-center gap-2 flex-wrap">
             <Link
               href={`/kategori/${article.category}`}
-              className="text-xs uppercase tracking-wider font-bold px-3 py-1 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/30 transition-colors"
+              className="text-xs uppercase tracking-wider font-bold px-3 py-1 rounded-md bg-lime-500/20 text-lime-300 border border-lime-500/30 hover:bg-lime-500/30 transition-colors"
             >
               {categoryLabels[article.category] || article.category}
             </Link>
@@ -93,7 +93,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               <Link
                 key={p}
                 href={`/platform/${encodeURIComponent(p)}`}
-                className="text-xs px-2.5 py-1 rounded-md bg-slate-800/80 text-slate-300 border border-slate-700 hover:text-white transition-colors flex items-center gap-1 font-mono"
+                className="text-xs px-2.5 py-1 rounded-md bg-slate-800/80 text-slate-300 border border-slate-700 hover:text-white transition-colors flex items-center gap-1 font-sans"
               >
                 <Monitor className="w-3 h-3 text-slate-400" />
                 {p}
@@ -138,10 +138,11 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
         {/* Cover Image */}
         <div className="relative w-full h-64 sm:h-96 lg:h-[480px] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-          <Image
+          <ArticleCover
             src={coverUrl}
             alt={article.title}
             fill
+            sizes="(max-width: 896px) 100vw, 896px"
             priority
             className="object-cover"
           />
@@ -180,7 +181,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               <Link
                 key={genre}
                 href={`/genre/${encodeURIComponent(genre)}`}
-                className="text-xs px-3 py-1 rounded-full bg-slate-800/80 hover:bg-cyan-950 hover:text-cyan-400 border border-slate-700 hover:border-cyan-500/40 text-slate-300 transition-colors"
+                className="text-xs px-3 py-1 rounded-full bg-slate-800/80 hover:bg-lime-950 hover:text-lime-400 border border-slate-700 hover:border-lime-500/40 text-slate-300 transition-colors"
               >
                 #{genre}
               </Link>

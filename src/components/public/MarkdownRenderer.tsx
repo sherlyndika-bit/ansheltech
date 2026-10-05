@@ -8,7 +8,7 @@ interface MarkdownRendererProps {
 
 export function MarkdownRenderer({ content }: MarkdownRendererProps) {
   return (
-    <div className="prose prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-pre:bg-slate-900/90 prose-pre:border prose-pre:border-slate-800 prose-blockquote:border-l-cyan-500 prose-blockquote:bg-cyan-950/20 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg prose-table:border-collapse prose-th:border prose-th:border-slate-800 prose-th:bg-slate-900/80 prose-th:p-3 prose-td:border prose-td:border-slate-800/80 prose-td:p-3 leading-relaxed text-slate-300">
+    <div className="prose prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-lime-400 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-pre:bg-slate-900/90 prose-pre:border prose-pre:border-slate-800 prose-blockquote:border-l-lime-500 prose-blockquote:bg-lime-950/20 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg prose-table:border-collapse prose-th:border prose-th:border-slate-800 prose-th:bg-slate-900/80 prose-th:p-3 prose-td:border prose-td:border-slate-800/80 prose-td:p-3 leading-relaxed text-slate-300">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -18,7 +18,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="text-xl sm:text-2xl font-bold text-white mt-7 mb-3 text-cyan-400">
+            <h2 className="text-xl sm:text-2xl font-bold text-white mt-7 mb-3 text-lime-400">
               {children}
             </h2>
           ),
@@ -48,7 +48,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             </li>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-cyan-400 pl-4 py-2 my-4 bg-cyan-950/10 italic text-cyan-200">
+            <blockquote className="border-l-4 border-lime-400 pl-4 py-2 my-4 bg-lime-950/10 italic text-lime-200">
               {children}
             </blockquote>
           ),
@@ -56,7 +56,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             const isInline = !className;
             if (isInline) {
               return (
-                <code className="bg-slate-800/90 text-cyan-300 px-1.5 py-0.5 rounded text-xs font-mono border border-slate-700">
+                <code className="bg-slate-800/90 text-lime-300 px-1.5 py-0.5 rounded text-xs font-sans border border-slate-700">
                   {children}
                 </code>
               );

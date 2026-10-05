@@ -1,174 +1,45 @@
-import React from 'react';
 import Link from 'next/link';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { getPublishedArticles } from '@/lib/articles';
 import { ArticleCard } from '@/components/public/ArticleCard';
 import { ReviewCard } from '@/components/public/ReviewCard';
-import { NewsletterForm } from '@/components/public/NewsletterForm';
-import { Flame, TrendingUp, ChevronRight, Mail, Bell } from 'lucide-react';
+import { formatDate } from '@/lib/utils';
 
-export const revalidate = 60; // Revalidate every minute
+export const revalidate = 60;
 
 export default async function HomePage() {
   const articles = await getPublishedArticles();
-
-  // Featured article (first one)
-  const featuredArticle = articles[0];
-  // Next recent articles
-  const recentArticles = articles.slice(1);
-  // Reviews section articles
-  const reviewArticles = articles.filter((a) => a.category === 'review');
-
-  const trendingTopics = [
-    { label: 'GTA VI', href: '/genre/Open%20World' },
-    { label: 'PS5 Pro', href: '/platform/PlayStation%205' },
-    { label: 'Black Myth: Wukong', href: '/genre/Soulslike' },
-    { label: 'Elden Ring DLC', href: '/genre/RPG' },
-    { label: 'Valorant', href: '/genre/FPS' },
-    { label: 'Nintendo Switch', href: '/platform/Nintendo%20Switch' },
-    { label: 'PC Master Race', href: '/platform/PC' },
-  ];
-
+  const featured = articles[0];
+  const latest = articles.slice(1, 7);
+  const reviews = articles.filter(a => a.category === 'review').slice(0, 3);
+  const guides = articles.filter(a => a.category === 'guide').slice(0, 3);
   return (
-    <div className="space-y-16 pb-20">
-      {/* Trending Topics Ticker Bar */}
-      <section className="border-b border-slate-800/80 bg-[#090e18]/90 py-2.5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 overflow-x-auto text-xs no-scrollbar">
-          <div className="flex items-center gap-1.5 text-cyan-400 font-bold whitespace-nowrap uppercase tracking-wider font-mono">
-            <span className="flex h-2 w-2 rounded-full bg-cyan-400 animate-ping" />
-            Topik Hangat:
-          </div>
-          <div className="flex items-center gap-2 whitespace-nowrap">
-            {trendingTopics.map((topic) => (
-              <Link
-                key={topic.label}
-                href={topic.href}
-                className="px-2.5 py-1 rounded-full bg-slate-900/90 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 border border-slate-800/80 transition-colors"
-              >
-                #{topic.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+    <div className="site-container pb-20">
+      <div className="flex flex-col justify-between gap-4 py-8 sm:flex-row sm:items-end sm:py-10">
+        <div><p className="eyebrow mb-3">Untuk yang hidup di dunia game</p><h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl">Play more. Know more<span className="text-lime-300">.</span></h1></div>
+        <p className="max-w-xs text-sm leading-relaxed text-zinc-400">Berita, ulasan, dan panduan untuk menemukan pengalaman bermain berikutnya.</p>
+      </div>
+      <section aria-label="Sorotan redaksi" className="grid gap-6 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)]">
+        {featured ? <ArticleCard article={featured} featured /> : <div className="empty-state">Artikel terbaru akan hadir di sini.</div>}
+        <aside className="flex flex-col rounded-2xl border border-white/10 bg-[#181b19] p-6 sm:p-7">
+          <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4"><h2 className="text-lg font-bold text-white">Dalam sorotan</h2><span className="h-2 w-2 rounded-full bg-lime-300" /></div>
+          {articles.slice(1, 5).map((article, index) => <Link key={article.id} href={`/artikel/${article.slug}`} className="group flex flex-1 gap-4 border-b border-white/10 py-5 last:border-0"><span className="text-xl font-medium tabular-nums text-zinc-600">0{index + 1}</span><div><p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-lime-300">{article.category === 'news' ? 'Berita' : article.category === 'guide' ? 'Panduan' : 'Review'}</p><h3 className="text-base font-semibold leading-snug text-zinc-100 group-hover:text-lime-300">{article.title}</h3><p className="mt-2 text-xs text-zinc-500">{formatDate(article.published_at || article.created_at)}</p></div></Link>)}
+          {articles.length < 2 && <p className="py-8 text-sm text-zinc-400">Nantikan sorotan berikutnya dari redaksi.</p>}
+        </aside>
       </section>
-
-      {/* Hero / Featured Article Section */}
-      <section className="relative overflow-hidden pt-2 pb-4">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/15 via-[#080c14] to-[#080c14] pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="mb-6 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="flex h-2.5 w-2.5 rounded-full bg-cyan-400" />
-              <span className="text-xs uppercase tracking-widest font-mono text-cyan-400 font-semibold">
-                Laporan Utama Redaksi
-              </span>
-            </div>
-            <span className="text-xs text-slate-500 font-mono hidden sm:inline">
-              Update Terkini
-            </span>
-          </div>
-
-          {/* Featured Article Card */}
-          {featuredArticle && (
-            <ArticleCard article={featuredArticle} featured={true} />
-          )}
-        </div>
+      <section className="mt-14 sm:mt-20" aria-labelledby="latest-title">
+        <div className="section-heading"><div><p className="eyebrow mb-2">Update terbaru</p><h2 id="latest-title">Dari meja redaksi</h2></div><Link className="section-link" href="/cari">Semua artikel <ArrowRight size={16} /></Link></div>
+        {latest.length ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{latest.map(a => <ArticleCard key={a.id} article={a} />)}</div> : <div className="empty-state">Belum ada artikel lainnya. Kembali lagi untuk update terbaru.</div>}
       </section>
-
-      {/* Latest News / Articles Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-8 border-b border-slate-800/80 pb-4">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
-              <TrendingUp className="w-5 h-5 text-cyan-400" />
-            </div>
-            <div>
-              <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                Berita & Analisis Terbaru
-              </h2>
-              <p className="text-xs text-slate-400">
-                Informasi aktual industri video game, pengumuman perilisan, dan teknologi komputasi
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {recentArticles.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentArticles.map((article) => (
-              <ArticleCard key={article.id} article={article} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 text-slate-500">
-            Belum ada artikel tambahan.
-          </div>
-        )}
+      <section className="mt-14 rounded-2xl border border-white/10 bg-[#181b19] p-5 sm:mt-20 sm:p-8" aria-labelledby="reviews-title">
+        <div className="section-heading"><div><p className="eyebrow mb-2">Sebelum kamu bermain</p><h2 id="reviews-title">Game di bawah lensa</h2><p className="mt-3 max-w-lg text-sm leading-relaxed text-zinc-400">Temukan ulasan dan skor redaksi untuk game berikutnya di daftar mainmu.</p></div><Link className="section-link" href="/review">Semua review <ArrowRight size={16} /></Link></div>
+        {reviews.length ? <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">{reviews.map(a => <ReviewCard key={a.id} article={a} />)}</div> : <div className="empty-state">Belum ada review yang dipublikasikan.</div>}
       </section>
-
-      {/* Review Spotlight Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#0f172a] to-[#080c14] border border-amber-500/20 shadow-2xl">
-          <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-800/80">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 shadow-sm">
-                <Flame className="w-6 h-6 text-amber-400" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h2 className="text-xl sm:text-2xl font-black text-white">
-                    Ulasan & Rating Game Pilihan
-                  </h2>
-                  <span className="hidden sm:inline text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                    Skor 0 - 10
-                  </span>
-                </div>
-                <p className="text-xs text-slate-400">
-                  Ulasan mendalam dari tim redaksi dengan sistem penilaian objektif dan transparan
-                </p>
-              </div>
-            </div>
-
-            <Link
-              href="/review"
-              className="inline-flex items-center gap-1 text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors"
-            >
-              Lihat Semua Review <ChevronRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-            {reviewArticles.map((article) => (
-              <ReviewCard key={article.id} article={article} />
-            ))}
-          </div>
-        </div>
+      <section className="mt-14 sm:mt-20" aria-labelledby="guides-title">
+        <div className="section-heading"><div><p className="eyebrow mb-2">Level up</p><h2 id="guides-title">Main dengan lebih siap</h2></div><Link className="section-link" href="/kategori/guide">Semua panduan <ArrowRight size={16} /></Link></div>
+        {guides.length ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{guides.map(a => <ArticleCard key={a.id} article={a} />)}</div> : <div className="empty-state">Panduan baru akan hadir di sini.</div>}
       </section>
-
-      {/* Professional Reader Newsletter Banner (Replaced Internal Author Callout) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-gradient-to-r from-slate-900 via-[#0d1527] to-slate-900 border border-slate-800 p-8 sm:p-12 relative overflow-hidden">
-          <div className="max-w-2xl space-y-3 relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-semibold">
-              <Mail className="w-3.5 h-3.5" /> Buletin Mingguan Ansheltech
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Jangan Lewatkan Berita & Diskon Game Terbaik
-            </h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Dapatkan rangkuman ulasan game terbaru, rumor industri terpercaya, dan tips walkthrough langsung ke kotak masuk email Anda setiap akhir pekan.
-            </p>
-
-            <NewsletterForm />
-            <p className="text-[11px] text-slate-500">
-              Bebas spam. Anda dapat berhenti berlangganan kapan saja dengan 1 klik.
-            </p>
-          </div>
-
-          <div className="absolute right-0 bottom-0 translate-x-12 translate-y-12 opacity-10 pointer-events-none hidden lg:block">
-            <Bell className="w-80 h-80 text-cyan-400" />
-          </div>
-        </div>
-      </section>
+      <section className="mt-14 flex flex-col justify-between gap-6 rounded-2xl bg-lime-300 p-7 text-zinc-950 sm:mt-20 sm:flex-row sm:items-center sm:p-10"><div><p className="mb-3 text-xs font-bold uppercase tracking-widest">Temukan duniamu</p><h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Satu portal. Banyak cara bermain.</h2><p className="mt-3 text-sm text-zinc-800">Jelajahi berita dan panduan untuk platform favoritmu.</p></div><Link href="/platform/PC" className="inline-flex min-h-12 shrink-0 items-center justify-center gap-3 rounded-lg bg-zinc-950 px-6 text-sm font-semibold text-white hover:bg-zinc-800">Jelajahi PC gaming <ArrowUpRight size={18} /></Link></section>
     </div>
   );
 }
