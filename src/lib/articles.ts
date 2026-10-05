@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/client';
+import { createClient } from '@/lib/supabase/server';
 import { Article } from '@/types/database';
 import { INITIAL_DUMMY_ARTICLES } from './dummy-data';
 
@@ -23,7 +23,7 @@ export async function getPublishedArticles(): Promise<Article[]> {
   }
 
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data, error } = await supabase
       .from('articles')
       .select('*')
@@ -46,7 +46,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   }
 
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data, error } = await supabase
       .from('articles')
       .select('*')
@@ -105,7 +105,7 @@ export async function getAllArticlesAdmin(): Promise<Article[]> {
   }
 
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data, error } = await supabase
       .from('articles')
       .select('*')
@@ -127,7 +127,7 @@ export async function getArticleById(id: string): Promise<Article | null> {
   }
 
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data, error } = await supabase
       .from('articles')
       .select('*')
@@ -143,21 +143,4 @@ export async function getArticleById(id: string): Promise<Article | null> {
   }
 }
 
-export async function deleteArticleById(id: string): Promise<boolean> {
-  if (!isSupabaseConfigured()) {
-    localArticlesStore = localArticlesStore.filter((a) => a.id !== id);
-    return true;
-  }
-
-  try {
-    const supabase = createClient();
-    const { error } = await supabase.from('articles').delete().eq('id', id);
-    if (error) throw error;
-    localArticlesStore = localArticlesStore.filter((a) => a.id !== id);
-    return true;
-  } catch (err) {
-    console.error('Delete article error:', err);
-    throw err;
-  }
-}
 

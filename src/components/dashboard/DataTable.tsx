@@ -21,8 +21,7 @@ import {
   FileEdit,
   Clock
 } from 'lucide-react';
-import { deleteArticleById } from '@/lib/articles';
-
+import { deleteArticleAction } from '@/app/actions';
 interface DataTableProps {
   initialArticles: Article[];
 }
@@ -56,7 +55,7 @@ export function DataTable({ initialArticles }: DataTableProps) {
     if (!articleToDelete) return;
     setIsDeleting(true);
     try {
-      await deleteArticleById(articleToDelete.id);
+      await deleteArticleAction(articleToDelete.id);
       setArticles((prev) => prev.filter((a) => a.id !== articleToDelete.id));
       setArticleToDelete(null);
     } catch (err) {
