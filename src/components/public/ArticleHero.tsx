@@ -5,7 +5,7 @@ import { articleCover } from '@/lib/article-images';
 import { calculateReadingTime, formatDate } from '@/lib/utils';
 import { ArticleCover } from './ArticleCover';
 
-export const categoryLabels = { news: 'Berita Game', guide: 'Panduan & Tips', review: 'Review Game' };
+export const categoryLabels: Record<string, string> = { news: 'Berita Game', guide: 'Panduan & Tips', review: 'Review Game', tips: 'Tips & Tricks', recommendation: 'Rekomendasi', deals: 'Deals & Sale', 'game-update': 'Update Game', 'gaming-industry': 'Gaming Industry', esports: 'Esports', 'hardware-tech': 'Hardware & Tech' };
 
 export function ArticleTitle({ title }: { title: string }) {
   const colon = title.indexOf(':');
@@ -32,3 +32,4 @@ export function ArticleHero({ article, detail = false }: { article: Article; det
     </div>
   </section>;
 }
+

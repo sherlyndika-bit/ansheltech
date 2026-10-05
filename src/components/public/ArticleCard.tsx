@@ -14,3 +14,4 @@ export function ArticleCard({ article, featured = false, compact = false }: { ar
     <div className="story-body"><p className="story-category">{categoryLabels[article.category]}</p><h3><Link href={`/artikel/${article.slug}`}>{article.title}</Link></h3>{!compact && article.excerpt && <p className="story-excerpt">{article.excerpt}</p>}<div className="story-meta"><span><CalendarDays size={13} />{formatDate(article.published_at || article.created_at)}</span><span><Clock3 size={13} />{calculateReadingTime(article.content)}</span></div></div>
   </article>;
 }
+
