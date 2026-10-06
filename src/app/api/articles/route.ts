@@ -6,6 +6,13 @@ const contentTypes: ArticleContentType[] = ['news','guide','tips','recommendatio
 const statuses: ArticleStatus[] = ['draft','published','scheduled'];
 const allowed = ['title','slug','excerpt','content','category','content_type','cover_image_url','platforms','genres','rating','focus_keyword','seo_title','seo_description','source_urls','status','published_at','is_featured','ai_generated','ai_confidence','research_score','freshness_score','source_verified','automation_run_id'];
 const score = (v: unknown) => v == null || (typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= 100);
+function isHttpUrl(value: unknown): boolean {
+ if (typeof value !== 'string' || !/^https?:\/\//i.test(value)) return false;
+ try {
+  const url = new URL(value);
+  return (url.protocol === 'http:' || url.protocol === 'https:') && Boolean(url.hostname);
+ } catch { return false; }
+}
 export async function POST(request: NextRequest) {
  const { NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, N8N_ARTICLE_INGEST_SECRET } = process.env;
  if (!NEXT_PUBLIC_SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !N8N_ARTICLE_INGEST_SECRET) return NextResponse.json({error:'Server configuration is incomplete'},{status:500});
@@ -17,8 +24,9 @@ export async function POST(request: NextRequest) {
  if (![body.ai_confidence,body.research_score,body.freshness_score].every(score)) return NextResponse.json({error:'scores must be between 0 and 100'},{status:400});
  if (body.source_urls !== undefined && !Array.isArray(body.source_urls)) return NextResponse.json({error:'source_urls must be an array'},{status:400});
  const sources: ArticleSource[] = Array.isArray(body.source_urls) ? body.source_urls : [];
- if (sources.some(source => !source || typeof source.url !== 'string' || !/^https?:\/\//i.test(source.url) || typeof source.publisher !== 'string' || !source.publisher.trim() || !['official','media','database','community','other'].includes(source.type))) return NextResponse.json({error:'source_urls contains an invalid source'},{status:400});
+ if (sources.some(source => !source || !isHttpUrl(source.url) || typeof source.publisher !== 'string' || !source.publisher.trim() || !['official','media','database','community','other'].includes(source.type))) return NextResponse.json({error:'source_urls contains an invalid source'},{status:400});
  if (body.status === 'scheduled' && (!body.published_at || Number.isNaN(Date.parse(body.published_at)) || Date.parse(body.published_at) <= Date.now())) return NextResponse.json({error:'scheduled published_at must be a valid future timestamp'},{status:400});
  const payload = Object.fromEntries(allowed.filter(k => body[k] !== undefined).map(k => [k,body[k]])); payload.platforms=Array.isArray(body.platforms)?body.platforms:[]; payload.genres=Array.isArray(body.genres)?body.genres:[]; payload.source_urls=sources; payload.status = body.status || 'draft';
  const supabase=createClient(NEXT_PUBLIC_SUPABASE_URL,SUPABASE_SERVICE_ROLE_KEY); const {data,error}=await supabase.from('articles').insert(payload).select().single(); if(error) return NextResponse.json({error:error.message},{status:400}); return NextResponse.json({article:data},{status:201});
 }
+
