@@ -16,10 +16,11 @@ import { TableOfContents } from '@/components/public/TableOfContents';
 type PageProps = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const article = await getArticleBySlug((await params).slug);
-  if (!article) return { title: 'Artikel Tidak Ditemukan â€” Ansheltech' };
+  if (!article) return { title: 'Artikel Tidak Ditemukan — Ansheltech' };
   const title = article.seo_title || article.title;
   const description = article.seo_description || article.excerpt || article.title;
-  const canonical = `https://ansheltech.vercel.app/artikel/${article.slug}`;
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://ansheltech.vercel.app').replace(/\/+$/, '');
+  const canonical = `${siteUrl}/artikel/${article.slug}`;
   return { title, description, alternates: { canonical }, openGraph: { title, description, url: canonical, images: articleCover(article) ? [articleCover(article)] : [] }, twitter: { card: 'summary_large_image', title, description, images: articleCover(article) ? [articleCover(article)] : [] } };
 }
 export default async function ArticleDetailPage({ params }: PageProps) {
