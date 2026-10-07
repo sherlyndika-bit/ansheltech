@@ -1,3 +1,4 @@
+import { YouTubeEmbed } from '@/components/public/YouTubeEmbed';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight, CalendarDays, Gamepad2 } from 'lucide-react';
@@ -35,6 +36,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       <article className="article-main">
         <TableOfContents headings={headings} mobile />
         <div className="article-lead-image"><ArticleCover src={articleCover(article)} alt={article.title} fill priority sizes="(max-width: 1024px) 100vw, 820px" className="object-cover" /></div>
+        {article.video_url && <YouTubeEmbed url={article.video_url} title={article.title} />}
         {article.category === 'review' && article.rating !== null && <div className="review-verdict"><div><p className="eyebrow">Penilaian redaksi</p><h2>Skor ulasan</h2></div><RatingBadge rating={article.rating} size="lg" showLabel /></div>}
         <MarkdownRenderer content={article.content} />
         <div className="article-tags">{article.genres.map(genre => <Link className="topic-link" key={genre} href={`/genre/${encodeURIComponent(genre)}`}>#{genre}</Link>)}</div>
