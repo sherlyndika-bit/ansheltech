@@ -1,5 +1,6 @@
 'use client';
 
+import { isValidYouTubeUrl } from '@/lib/youtube';
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -59,6 +60,8 @@ export function ArticleForm({ initialData, isEditing = false }: ArticleFormProps
   const [rating, setRating] = useState<number | null>(
     initialData?.rating !== undefined ? initialData.rating : (initialData?.category === 'review' ? 8.0 : null)
   );
+  const [videoUrl, setVideoUrl] = useState(initialData?.video_url || '');
+  const videoInvalid = Boolean(videoUrl.trim()) && !isValidYouTubeUrl(videoUrl);
   const [coverImageUrl, setCoverImageUrl] = useState(initialData?.cover_image_url || '');
   const [contentType, setContentType] = useState<ArticleContentType | ''>(initialData?.content_type || '');
   const [focusKeyword, setFocusKeyword] = useState(initialData?.focus_keyword || '');
@@ -147,6 +150,8 @@ export function ArticleForm({ initialData, isEditing = false }: ArticleFormProps
     setErrorMessage('');
     setSuccessMessage('');
 
+    if (videoInvalid) { setErrorMessage('Video YouTube harus berupa URL HTTPS YouTube yang valid.'); return; }
+
     if (!title.trim()) {
       setErrorMessage('Judul artikel wajib diisi.');
       return;
@@ -206,6 +211,7 @@ export function ArticleForm({ initialData, isEditing = false }: ArticleFormProps
         excerpt: excerpt.trim() || null,
         content: content.trim(),
         cover_image_url: finalCoverUrl,
+        video_url: videoUrl.trim() || null,
         category,
         genres,
         platforms,
@@ -553,6 +559,17 @@ export function ArticleForm({ initialData, isEditing = false }: ArticleFormProps
                 </p>
               </div>
             )}
+          </div>
+
+          <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+            <label htmlFor="article-video-url" className="block text-xs font-bold text-slate-700">Video YouTube</label>
+            <input id="article-video-url" type="url" value={videoUrl} onChange={e => setVideoUrl(e.target.value)}
+              placeholder="https://www.youtube.com/watch?v=..." aria-invalid={videoInvalid} aria-describedby="article-video-help article-video-status"
+              className="w-full px-3 py-2 text-xs text-slate-700 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+            <p id="article-video-help" className="text-[11px] text-slate-500">Opsional. Mendukung youtube.com, youtu.be, Shorts, dan YouTube Live.</p>
+            <p id="article-video-status" aria-live="polite" className={videoInvalid ? 'text-xs text-rose-600' : 'text-xs text-emerald-700'}>
+              {videoUrl.trim() ? (videoInvalid ? 'Masukkan URL HTTPS YouTube yang valid.' : 'URL YouTube valid.') : ''}
+            </p>
           </div>
 
           {/* Cover Image Upload (Supabase Storage) */}

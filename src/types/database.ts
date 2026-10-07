@@ -10,6 +10,7 @@ export interface Article {
   slug: string;
   excerpt: string | null;
   content: string;
+  video_url?: string | null;
   cover_image_url: string | null;
   category: ArticleCategory;
   genres: string[];
@@ -39,6 +40,7 @@ export interface ArticleFormData {
   slug: string;
   excerpt: string;
   content: string;
+  video_url?: string | null;
   cover_image_url: string;
   category: ArticleCategory;
   genres: string[];
