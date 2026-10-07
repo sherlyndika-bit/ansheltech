@@ -54,6 +54,7 @@ export const GENRE_OPTIONS = [
   'RPG',
   'Open World',
   'FPS',
+  'Extraction Shooter',
   'Soulslike',
   'Adventure',
   'Horror',
